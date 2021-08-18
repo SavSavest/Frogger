@@ -108,9 +108,9 @@
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
--r:"E:/Documents/Uni/GPR103/SPOILER_GPR103_A4_Code_Skeleton_2021/GPR103_A4_Code Skeleton_2021/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/unityplastic.dll"
--r:"E:/Documents/Uni/GPR103/SPOILER_GPR103_A4_Code_Skeleton_2021/GPR103_A4_Code Skeleton_2021/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
--r:"E:/Documents/Uni/GPR103/SPOILER_GPR103_A4_Code_Skeleton_2021/GPR103_A4_Code Skeleton_2021/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll"
+-r:"E:/Documents/GitHub/Frogger/SPOILER_GPR103_A4_Code_Skeleton_2021/GPR103_A4_Code Skeleton_2021/Library/PackageCache/com.unity.collab-proxy@1.5.7/Lib/Editor/PlasticSCM/unityplastic.dll"
+-r:"E:/Documents/GitHub/Frogger/SPOILER_GPR103_A4_Code_Skeleton_2021/GPR103_A4_Code Skeleton_2021/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
+-r:"E:/Documents/GitHub/Frogger/SPOILER_GPR103_A4_Code_Skeleton_2021/GPR103_A4_Code Skeleton_2021/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll"
 -r:"E:/Unity/2021.1.13f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"E:/Unity/2021.1.13f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"E:/Unity/2021.1.13f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"

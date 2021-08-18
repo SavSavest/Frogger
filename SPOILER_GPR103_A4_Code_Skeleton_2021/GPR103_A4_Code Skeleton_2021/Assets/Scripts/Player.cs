@@ -29,12 +29,18 @@ public class Player : MonoBehaviour
     public AudioClip carHitSound;
     public AudioClip drownSound;
     private GameManager myGameManager; //A reference to the GameManager in the scene.
+   
+   
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         myGameManager = GameObject.FindObjectOfType<GameManager>();
         animator = GetComponent<Animator>();
+        
+
     }
 
     // Update is called once per frame
@@ -93,6 +99,7 @@ public class Player : MonoBehaviour
 
         }
         
+        
     }
 
     void LateUpdate()
@@ -116,10 +123,10 @@ public class Player : MonoBehaviour
                 KillPlayer();
             }
 
-            if (collision.transform.gameObject.tag == "Water")
-            {             
-                isInWater = true;
-            }
+            //if (collision.transform.gameObject.tag == "Water")
+            //{             
+            //    isInWater = true;
+            //}
 
             else if (collision.transform.GetComponent<Platform>() != null)
             {
@@ -132,6 +139,9 @@ public class Player : MonoBehaviour
             {
                 myGameManager.UpdateScore(10);
                 Destroy(collision.gameObject);
+                
+               
+
             }
         }
     }
@@ -194,10 +204,11 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("diedByWater", false);
         }
-         
-        
+     }
 
-    }
+   
+
+
 
     //A function to collect and store the player score
 }

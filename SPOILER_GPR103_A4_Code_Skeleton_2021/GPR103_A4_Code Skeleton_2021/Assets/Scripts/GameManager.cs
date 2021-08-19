@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
     public int currentScore = 0; //The current score in this round.
     public int highScore = 0; //The highest score achieved either in this session or over the lifetime of the game.
     public TMP_Text currentScoreUI;
+    public TMP_Text currentLivesUI;
+    public TMP_Text highScoreUI;
+    public int maxLives = 5;
+    public int currentLives = 5;
+    public int minLives = 0;
 
     [Header("Playable Area")]
     public float levelConstraintTop; //The maximum positive Y value of the playable space.
@@ -29,12 +34,20 @@ public class GameManager : MonoBehaviour
     {
         UpdateScore(-currentScore);
         currentScoreUI.text = "0";
+
+        UpdateLives(0);
+        currentLivesUI.text = "5";
+        
+        
+        UpdateHighScore(0);
+        highScoreUI.text = "0";
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateHighScore(0);
     }
 
     public void UpdateScore(int scoreAmount)
@@ -42,4 +55,22 @@ public class GameManager : MonoBehaviour
         currentScore += scoreAmount;
         currentScoreUI.text = currentScore.ToString();
     }
+
+    public void UpdateLives(int livesRemaining)
+    {
+        currentLives += livesRemaining;
+        currentLivesUI.text = currentLives.ToString();
+    }
+
+    void UpdateHighScore(int currentHighScore)
+    {
+        highScore += currentHighScore;
+        highScoreUI.text = highScore.ToString();
+        if (currentScore >= highScore)
+        {
+            highScore = currentScore;
+        }
+
+    }
 }
+

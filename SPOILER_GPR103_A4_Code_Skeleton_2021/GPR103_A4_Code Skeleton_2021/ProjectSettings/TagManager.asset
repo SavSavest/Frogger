@@ -5,9 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Water
-  - Log
   - Bonus
   - Fly
+  - Platform
   layers:
   - Default
   - TransparentFX

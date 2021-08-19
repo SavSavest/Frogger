@@ -11,8 +11,9 @@ public class Player : MonoBehaviour
 {
     public string playerName = ""; //The players name for the purpose of storing the high score
    
-    public int playerTotalLives; //Players total possible lives.
-    public int playerLivesRemaining; //PLayers actual lives remaining.
+    public int maxLives; //Players total possible lives.
+    public int livesRemaining; //Players actual lives remaining.
+    
    
     public bool playerIsAlive = true; //Is the player currently alive?
     public bool playerCanMove = false; //Can the player currently move?
@@ -22,7 +23,8 @@ public class Player : MonoBehaviour
     public bool hitByCar = false;
     public int playerScore = 0;// ---------------- ADD PLAYER SCORE AND DISPLAY-------
     private Animator animator;
-   
+    public Vector2 startPosition;
+
     //Audio
     private AudioSource myAudioSource;
     public AudioClip jumpSound;
@@ -39,7 +41,9 @@ public class Player : MonoBehaviour
     {
         myGameManager = GameObject.FindObjectOfType<GameManager>();
         animator = GetComponent<Animator>();
-        
+        transform.position = startPosition;
+
+
 
     }
 
@@ -91,15 +95,18 @@ public class Player : MonoBehaviour
             else
             {
                 animator.SetBool("isHopping", false);
+                                
             }
 
             //Rotate Frog in direction it's going
           
-
-
         }
         
-        
+        //When player runs out of lives, send them to game over screen
+        if (myGameManager.currentLives == 0)
+        {
+            Invoke("GameOver", 2f);
+        }
     }
 
     void LateUpdate()
@@ -109,6 +116,7 @@ public class Player : MonoBehaviour
             if (isInWater == true && isOnPlatform == false)
             {
                 PlayerDrowned();
+                
             }
         }
     }
@@ -121,11 +129,13 @@ public class Player : MonoBehaviour
             if (collision.transform.GetComponent<Vehicle>() != null)
             {
                 KillPlayer();
+                //myGameManager.UpdateLives(-1);
             }
 
             if (collision.transform.gameObject.tag == "Water")
             {
                 isInWater = true;
+                
             }
 
             else if (collision.transform.GetComponent<Platform>() != null)
@@ -138,9 +148,7 @@ public class Player : MonoBehaviour
             else if (collision.transform.tag == "Bonus")
             {
                 myGameManager.UpdateScore(10);
-                Destroy(collision.gameObject);
-                
-               
+                Destroy(collision.gameObject);                           
 
             }
         }
@@ -170,6 +178,7 @@ public class Player : MonoBehaviour
         playerIsAlive = false;
         playerCanMove = false;
         print("squished!");
+
         myAudioSource.PlayOneShot(carHitSound);
         
 
@@ -177,6 +186,7 @@ public class Player : MonoBehaviour
         {
         animator.SetBool("diedByCar", true);
             Invoke("Restart", 2f);
+            myGameManager.UpdateLives(-1);
         }
         else
         {
@@ -192,12 +202,14 @@ public class Player : MonoBehaviour
         didPlayerDrown = false;
         playerIsAlive = false;
         playerCanMove = false;
+        isInWater = false;
         myAudioSource.PlayOneShot(drownSound);
         print("You have drowned");
         if (didPlayerDrown == false)
         {
             animator.SetBool("diedByWater", true);
             Invoke("Restart", 2f);
+            myGameManager.UpdateLives(-1);
         }
         else
         {
@@ -207,7 +219,21 @@ public class Player : MonoBehaviour
 
     void Restart()
     {
-      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        myGameManager.currentScore = 0;
+        myGameManager.UpdateScore(0);
+        
+        animator.SetBool("isReset", true);
+        animator.SetBool("diedByWater", false);
+        animator.SetBool("diedByCar", false);
+        transform.position = startPosition;
+        playerIsAlive = true;
+        
+    }
+
+    void GameOver()
+    {
+        playerIsAlive = false;
+        SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
     }
 
     //A function to collect and store the player score

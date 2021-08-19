@@ -34,12 +34,11 @@ public class RandomFlySpawn : MonoBehaviour
         {
             whichFly = Random.Range(1, 5);
             Debug.Log(whichFly);
+            flyHasSpawned = true;
 
             SpawnFly();
 
             nextSpawn = Time.time + spawnRate;
-            //flyHasSpawned = true;
-            // need to work out how to change fly spawn to false upon destruction
         }
 
        
@@ -49,24 +48,29 @@ public class RandomFlySpawn : MonoBehaviour
 
 void SpawnFly()
     {
-        Vector2 flyPosition = new Vector2(Random.Range(-4, 4), Random.Range(4, 4));
-        switch (whichFly)
+        Vector2 pos1 = new Vector2(-4, 3);
+        Vector2 pos2 = new Vector2(-2, 3);
+        Vector2 pos3 = new Vector2(0, 3);
+        Vector2 pos4 = new Vector2(2, 3);
+        Vector2 pos5 = new Vector2(4, 3);
+       
+        
+       switch (whichFly)
         {
             case 1:
-                Instantiate(fly1, flyPosition, Quaternion.identity);
-                
+                Instantiate(fly1, pos1, Quaternion.identity);
                 break;
             case 2:
-                Instantiate(fly2, flyPosition, Quaternion.identity);
+                Instantiate(fly2, pos2, Quaternion.identity);
                 break;
             case 3:
-                Instantiate(fly3, flyPosition, Quaternion.identity);
+                Instantiate(fly3, pos3, Quaternion.identity);
                 break;
             case 4:
-                Instantiate(fly4, flyPosition, Quaternion.identity);
+                Instantiate(fly4, pos4, Quaternion.identity);
                 break;
             case 5:
-                Instantiate(fly5, flyPosition, Quaternion.identity);
+                Instantiate(fly5, pos5, Quaternion.identity);
                 break;
         }
     }
@@ -87,4 +91,5 @@ void SpawnFly()
 //References
 //https://www.youtube.com/watch?v=ao_BZMORqQw&ab_channel=AlexanderZotov
 //https://answers.unity.com/questions/875343/random-spawn-timer.html
+                
 

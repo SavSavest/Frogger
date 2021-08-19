@@ -48,11 +48,11 @@ public class RandomFlySpawn : MonoBehaviour
 
 void SpawnFly()
     {
-        Vector2 pos1 = new Vector2(-4, 3);
-        Vector2 pos2 = new Vector2(-2, 3);
-        Vector2 pos3 = new Vector2(0, 3);
-        Vector2 pos4 = new Vector2(2, 3);
-        Vector2 pos5 = new Vector2(4, 3);
+        Vector2 pos1 = new Vector2(-8, 7);
+        Vector2 pos2 = new Vector2(-4, 7);
+        Vector2 pos3 = new Vector2(0, 7);
+        Vector2 pos4 = new Vector2(4, 7);
+        Vector2 pos5 = new Vector2(8, 7);
        
         
        switch (whichFly)

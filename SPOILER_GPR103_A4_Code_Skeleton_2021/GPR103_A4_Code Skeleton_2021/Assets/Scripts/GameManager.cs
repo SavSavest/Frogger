@@ -29,6 +29,12 @@ public class GameManager : MonoBehaviour
     public float totalGameTime; //The maximum amount of time or the total time avilable to the player.
     public float gameTimeRemaining; //The current elapsed time
 
+    void Awake()
+    {
+        highScore = PlayerPrefs.GetInt("HighScore", highScore);
+        highScoreUI.text = highScore.ToString();
+
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -37,21 +43,21 @@ public class GameManager : MonoBehaviour
 
         UpdateLives(0);
         currentLivesUI.text = "5";
+
         
-        
-        UpdateHighScore(0);
-        highScoreUI.text = "0";
-       
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateHighScore(0);
+        //UpdateHighScore();
     }
 
     public void UpdateScore(int scoreAmount)
     {
+        UpdateHighScore();
         currentScore += scoreAmount;
         currentScoreUI.text = currentScore.ToString();
     }
@@ -62,15 +68,18 @@ public class GameManager : MonoBehaviour
         currentLivesUI.text = currentLives.ToString();
     }
 
-    void UpdateHighScore(int currentHighScore)
+    void UpdateHighScore()
     {
-        highScore += currentHighScore;
+       //highScore += currentHighScore;
         highScoreUI.text = highScore.ToString();
-        if (currentScore >= highScore)
+        if (currentScore > highScore)  
         {
             highScore = currentScore;
+            PlayerPrefs.SetInt("HighScore", highScore);
         }
 
     }
 }
 
+//Reference for highscore storage
+//https://www.youtube.com/watch?time_continue=855&v=0zrZZN-QaDk&feature=emb_title&ab_channel=gamesplusjames

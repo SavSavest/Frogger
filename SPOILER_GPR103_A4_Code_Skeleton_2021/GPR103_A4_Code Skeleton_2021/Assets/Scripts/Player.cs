@@ -123,10 +123,10 @@ public class Player : MonoBehaviour
                 KillPlayer();
             }
 
-            //if (collision.transform.gameObject.tag == "Water")
-            //{             
-            //    isInWater = true;
-            //}
+            if (collision.transform.gameObject.tag == "Water")
+            {
+                isInWater = true;
+            }
 
             else if (collision.transform.GetComponent<Platform>() != null)
             {
@@ -176,8 +176,7 @@ public class Player : MonoBehaviour
         if (hitByCar == false)
         {
         animator.SetBool("diedByCar", true);
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            // -------------------------- work out how to add delay for animation --------------
+            Invoke("Restart", 2f);
         }
         else
         {
@@ -198,7 +197,7 @@ public class Player : MonoBehaviour
         if (didPlayerDrown == false)
         {
             animator.SetBool("diedByWater", true);
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Invoke("Restart", 2f);
         }
         else
         {
@@ -206,11 +205,17 @@ public class Player : MonoBehaviour
         }
      }
 
+    void Restart()
+    {
+      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    //A function to collect and store the player score
+}
+
    
 
 
 
-    //A function to collect and store the player score
-}
 
                 

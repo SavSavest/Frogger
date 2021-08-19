@@ -12,11 +12,19 @@ public class RandomFlySpawn : MonoBehaviour
     public int whichFly;
     public bool flyHasSpawned = false;
     public float refreshSpawn = 0;
+    
     // Start is called before the first frame update
+   
+    void Awake()
+    {
+        //GameObject fly1 = GameObject.FindWithTag("Bonus");
+        //fly1.GetComponent<DestroyFly>().FlyDestoy();
+
+
+    }
     void Start()
     {
-        spawnRate = Random.Range(1, 15);
-        
+        spawnRate = Random.Range(1, 20);
     }
 
     // Update is called once per frame
@@ -62,7 +70,16 @@ void SpawnFly()
                 break;
         }
     }
-  
+
+    //IEnumerator SelfDestruct()
+    //{
+    //    yield return new WaitForSeconds(Random.Range(1f, 15f));
+    //    Destroy(gameObject.tag = "Bonus");
+    //    flyHasSpawned = false;
+    //    print("fly was destroyed");
+
+    //}
+
 }
 
 

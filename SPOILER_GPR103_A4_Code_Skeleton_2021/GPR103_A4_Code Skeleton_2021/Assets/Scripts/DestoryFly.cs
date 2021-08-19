@@ -4,24 +4,33 @@ using UnityEngine;
 
 public class DestoryFly : MonoBehaviour
 {
-    public RandomFlySpawn flySpawn;
+    public GameObject flySpawn;
+    public bool isSpawned = false;
    
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SelfDestruct());
-        GameObject f = GameObject.FindGameObjectWithTag("Fly");
-        flySpawn = f.GetComponent<RandomFlySpawn>();
-       
-        
+
+        FlyDestroy();
+
+
+    }
+
+    void FlyDestroy()
+    {
+        if (isSpawned == true)
+        {
+            StartCoroutine(SelfDestruct());
+        }
+
     }
 
     // Update is called once per frame
-  IEnumerator SelfDestruct()
+    IEnumerator SelfDestruct()
     {
         yield return new WaitForSeconds(Random.Range(1f, 15f));
         Destroy(gameObject);
-        flySpawn.flyHasSpawned = false;
+        isSpawned = false;
         
     }
 }

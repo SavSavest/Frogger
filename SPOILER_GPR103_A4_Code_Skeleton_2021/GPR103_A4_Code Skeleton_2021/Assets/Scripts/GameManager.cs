@@ -31,8 +31,11 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        highScore = PlayerPrefs.GetInt("HighScore", highScore);
-        highScoreUI.text = highScore.ToString();
+        if (PlayerPrefs.HasKey("HighScore"))
+        {
+            highScore = PlayerPrefs.GetInt("HighScore", highScore);
+            highScoreUI.text = highScore.ToString();
+        }
 
     }
     // Start is called before the first frame update
@@ -79,6 +82,14 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    //So I can clear the highscore
+    //public void ClearHighScore()
+    //{
+    //    PlayerPrefs.DeleteKey("HighScore");
+    //    highScore = 0;
+    //    highScoreUI.text = highScore.ToString();
+    //}
 }
 
 //Reference for highscore storage

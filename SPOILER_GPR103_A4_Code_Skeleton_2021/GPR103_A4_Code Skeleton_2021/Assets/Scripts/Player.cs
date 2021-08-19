@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     public int playerScore = 0;// ---------------- ADD PLAYER SCORE AND DISPLAY-------
     private Animator animator;
     public Vector2 startPosition;
+    public int winSquare = 0;
+    public bool hasWon = false;
 
     //Audio
     private AudioSource myAudioSource;
@@ -115,7 +117,7 @@ public class Player : MonoBehaviour
         {
             if (isInWater == true && isOnPlatform == false)
             {
-                PlayerDrowned();
+                //PlayerDrowned();
                 
             }
         }
@@ -149,6 +151,15 @@ public class Player : MonoBehaviour
             {
                 myGameManager.UpdateScore(10);
                 Destroy(collision.gameObject);                           
+
+            }
+
+            else if (collision.transform.tag == "Finish")
+            {
+                myGameManager.UpdateScore(100);
+                Destroy(collision.gameObject);
+                playerIsAlive = false;
+                Invoke("Finished", 1f);
 
             }
         }
@@ -228,6 +239,19 @@ public class Player : MonoBehaviour
         transform.position = startPosition;
         playerIsAlive = true;
         
+    }
+
+    void Finished()
+    {
+        transform.position = startPosition;
+        playerIsAlive = true;
+        winSquare += 1;
+        if (winSquare == 5)
+        {
+            hasWon = true;
+            
+            SceneManager.LoadScene("GameWon", LoadSceneMode.Single);
+        }
     }
 
     void GameOver()

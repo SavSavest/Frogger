@@ -134,18 +134,18 @@ public class Player : MonoBehaviour
                 //myGameManager.UpdateLives(-1);
             }
 
-            if (collision.transform.gameObject.tag == "Water")
-            {
-                isInWater = true;
-                
-            }
-
-            else if (collision.transform.GetComponent<Platform>() != null)
+            if (collision.transform.GetComponent<Platform>() != null)
             {
                 transform.SetParent(collision.transform);
                 isOnPlatform = true;
                 
             }
+            else if (collision.transform.gameObject.tag == "Water")
+            {
+                isInWater = true;
+                
+            }
+
 
             else if (collision.transform.tag == "Bonus")
             {
@@ -249,6 +249,7 @@ public class Player : MonoBehaviour
         transform.position = startPosition;
         playerIsAlive = true;
         winSquare += 1;
+        myTimer.timer = 0;
         if (winSquare == 5)
         {
             hasWon = true;

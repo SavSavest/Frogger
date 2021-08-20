@@ -76,8 +76,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 61
       Script: {instanceID: 0}
-    - Class: 65
-      Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
@@ -145,12 +143,6 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
-      Script: {instanceID: 0}
-    - Class: 156049354
-      Script: {instanceID: 0}
-    - Class: 483693784
-      Script: {instanceID: 0}
-    - Class: 1839735485
       Script: {instanceID: 0}
     Assets/Scenes/GameOver.unity:
     - Class: 1
@@ -358,7 +350,7 @@ ScriptsOnlyBuild:
     className: SpriteSkin
   - hash:
       serializedVersion: 2
-      Hash: 6e794593717b88778bc993dfbc0f60bd
+      Hash: 1881d46d231025919ca2ef71323d83f9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -928,7 +920,7 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
-      Hash: 0efe8a74c75fc810ca484d8c40e3d967
+      Hash: 2a70daaa941b48cccb79ac150eb189d4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TimerScript

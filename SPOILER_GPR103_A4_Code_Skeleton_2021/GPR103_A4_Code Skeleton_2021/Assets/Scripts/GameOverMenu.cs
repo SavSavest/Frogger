@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameOverMenu : MonoBehaviour
 
   {
-    void Start()
+    public void MainMenu()
     {
-
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
     public void PlayGame()
     {

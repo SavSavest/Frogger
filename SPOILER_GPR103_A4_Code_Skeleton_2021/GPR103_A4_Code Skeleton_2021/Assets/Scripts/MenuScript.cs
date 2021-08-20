@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-     
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene("Assessment4", LoadSceneMode.Single);

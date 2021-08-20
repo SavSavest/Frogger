@@ -8,6 +8,8 @@ TagManager:
   - Bonus
   - Fly
   - Platform
+  - NoPass
+  - Croc
   layers:
   - Default
   - TransparentFX

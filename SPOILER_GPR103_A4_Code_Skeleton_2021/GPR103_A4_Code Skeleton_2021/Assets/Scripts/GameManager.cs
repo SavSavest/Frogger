@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public float levelConstraintBottom; //The maximum negative Y value of the playable space.
     public float levelConstraintLeft; //The maximum negative X value of the playable space.
     public float levelConstraintRight; //The maximum positive X value of the playablle space.
+    
 
     [Header("Gameplay Loop")]
     public bool isGameRunning; //Is the gameplay part of the game current active?
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
             highScoreUI.text = highScore.ToString();
         }
 
+       
     }
     // Start is called before the first frame update
     void Start()

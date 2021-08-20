@@ -26,17 +26,12 @@ public class Player : MonoBehaviour
     public Vector2 startPosition;
     public int winSquare = 0;
     public bool hasWon = false;
-
     //Audio
     private AudioSource myAudioSource;
     public AudioClip jumpSound;
     public AudioClip carHitSound;
     public AudioClip drownSound;
     private GameManager myGameManager; //A reference to the GameManager in the scene.
-   
-   
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -59,34 +54,41 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.UpArrow) && transform.position.y < myGameManager.levelConstraintTop)
             {
                 animator.SetBool("isHopping", true);
+           
                 transform.Translate(new Vector2(0, 1));
                 myAudioSource.clip = jumpSound;
                 myAudioSource.pitch = Random.Range(0.5f, 1f);
                 myAudioSource.Play();
                 myGameManager.UpdateScore(1);
+               
             }
 
             else if (Input.GetKeyDown(KeyCode.LeftArrow) && transform.position.x > myGameManager.levelConstraintLeft)
             {
                 animator.SetBool("isHopping", true);
+            
                 transform.Translate(new Vector2(-1, 0));
                 myAudioSource.clip = jumpSound;
                 myAudioSource.pitch = Random.Range(0.5f, 1f);
                 myAudioSource.Play();
+                
             }
 
             else if (Input.GetKeyDown(KeyCode.DownArrow) && transform.position.y > myGameManager.levelConstraintBottom)
             {
                 animator.SetBool("isHopping", true);
+              
                 transform.Translate(new Vector2(0, -1));
                 myAudioSource.clip = jumpSound;
                 myAudioSource.pitch = Random.Range(0.5f, 1f);
                 myAudioSource.Play();
+                
             }
 
             else if (Input.GetKeyDown(KeyCode.RightArrow) && transform.position.x < myGameManager.levelConstraintRight)
             {
                 animator.SetBool("isHopping", true);
+                
                 transform.Translate(new Vector2(1, 0));
                 myAudioSource.clip = jumpSound;
                 myAudioSource.pitch = Random.Range(0.5f, 1f);
@@ -99,18 +101,14 @@ public class Player : MonoBehaviour
                 animator.SetBool("isHopping", false);
                                 
             }
-
-            //Rotate Frog in direction it's going
-          
         }
-        
         //When player runs out of lives, send them to game over screen
         if (myGameManager.currentLives == 0)
         {
             Invoke("GameOver", 2f);
         }
     }
-
+    
     void LateUpdate()
     {
         if (playerIsAlive == true)
@@ -128,7 +126,8 @@ public class Player : MonoBehaviour
     {
         if (playerIsAlive == true)
         {
-            if (collision.transform.GetComponent<Vehicle>() != null)
+            if (collision.transform.GetComponent<Vehicle>() != null || collision.transform.gameObject.tag == "Croc")
+
             {
                 KillPlayer();
                 //myGameManager.UpdateLives(-1);
@@ -203,9 +202,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("diedByCar", false);
         }
-        
-
-    }
+    }   
 
     //Yes, even though it is a frog... it drowned, don't @ me.
     void PlayerDrowned()
@@ -238,7 +235,7 @@ public class Player : MonoBehaviour
         animator.SetBool("diedByCar", false);
         transform.position = startPosition;
         playerIsAlive = true;
-        
+       
     }
 
     void Finished()
@@ -259,9 +256,18 @@ public class Player : MonoBehaviour
         playerIsAlive = false;
         SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
     }
-
-    //A function to collect and store the player score
 }
+  
+
+   
+   
+
+
+
+
+   
+
+   
 
    
 

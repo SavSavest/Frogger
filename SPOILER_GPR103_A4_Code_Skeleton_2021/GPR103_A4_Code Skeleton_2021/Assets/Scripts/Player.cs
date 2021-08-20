@@ -31,14 +31,13 @@ public class Player : MonoBehaviour
     public AudioClip carHitSound;
     public AudioClip drownSound;
     private GameManager myGameManager; //A reference to the GameManager in the scene.
-
+    public GameObject myTimer;
     // Start is called before the first frame update
     void Start()
     {
         myGameManager = GameObject.FindObjectOfType<GameManager>();
         animator = GetComponent<Animator>();
-        transform.position = startPosition;
-
+        transform.position = startPosition;     
 
 
     }
@@ -106,6 +105,11 @@ public class Player : MonoBehaviour
         {
             Invoke("GameOver", 2f);
         }
+
+        //if (GetComponent.stopTimer == true)
+        //{
+        //    Invoke("GameOver", 2f);            
+        //}
     }
     
     void LateUpdate()

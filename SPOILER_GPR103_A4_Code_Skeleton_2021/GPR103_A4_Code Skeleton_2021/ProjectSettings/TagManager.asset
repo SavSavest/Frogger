@@ -10,6 +10,7 @@ TagManager:
   - Platform
   - NoPass
   - Croc
+  - Timer
   layers:
   - Default
   - TransparentFX

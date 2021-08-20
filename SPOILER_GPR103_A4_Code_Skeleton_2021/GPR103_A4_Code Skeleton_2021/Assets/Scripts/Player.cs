@@ -31,15 +31,14 @@ public class Player : MonoBehaviour
     public AudioClip carHitSound;
     public AudioClip drownSound;
     private GameManager myGameManager; //A reference to the GameManager in the scene.
-    public GameObject myTimer;
-    // Start is called before the first frame update
+    public TimerScript myTimer;
     void Start()
     {
         myGameManager = GameObject.FindObjectOfType<GameManager>();
         animator = GetComponent<Animator>();
-        transform.position = startPosition;     
-
-
+        transform.position = startPosition;
+        
+       
     }
 
     // Update is called once per frame
@@ -97,19 +96,18 @@ public class Player : MonoBehaviour
             else
             {
                 animator.SetBool("isHopping", false);
-                                
-            }
+
+                
+            }           
+
+            
         }
         //When player runs out of lives, send them to game over screen
         if (myGameManager.currentLives == 0)
         {
             Invoke("GameOver", 2f);
         }
-
-        //if (GetComponent.stopTimer == true)
-        //{
-        //    Invoke("GameOver", 2f);            
-        //}
+               
     }
     
     void LateUpdate()
@@ -118,7 +116,7 @@ public class Player : MonoBehaviour
         {
             if (isInWater == true && isOnPlatform == false)
             {
-                //PlayerDrowned();
+                PlayerDrowned();
                 
             }
         }
@@ -200,6 +198,8 @@ public class Player : MonoBehaviour
         animator.SetBool("diedByCar", true);
             Invoke("Restart", 2f);
             myGameManager.UpdateLives(-1);
+            myTimer.timer = 0;
+
         }
         else
         {
@@ -221,6 +221,7 @@ public class Player : MonoBehaviour
             animator.SetBool("diedByWater", true);
             Invoke("Restart", 2f);
             myGameManager.UpdateLives(-1);
+            myTimer.timer = 0;
         }
         else
         {
@@ -238,7 +239,9 @@ public class Player : MonoBehaviour
         animator.SetBool("diedByCar", false);
         transform.position = startPosition;
         playerIsAlive = true;
-       
+        
+        
+
     }
 
     void Finished()

@@ -299,6 +299,7 @@
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/PlayerTest.cs"
 "Assets/Scripts/RandomFlySpawn.cs"
+"Assets/Scripts/TimerScript.cs"
 "Assets/Scripts/Vehicle.cs"
 "Assets/Scripts/WinConditon.cs"
 -langversion:8.0

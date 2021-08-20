@@ -11,6 +11,7 @@ public class TimerScript : MonoBehaviour
     public float minGameTime;
     private bool stopTimer;
     public float timer = 0.00f;
+    public float currentTime;
     void Start()
     {
         stopTimer = false;
@@ -24,11 +25,9 @@ public class TimerScript : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;   
-        float time = maxGameTime - timer;       
-        int minutes = Mathf.FloorToInt(time / 60);
-        int second = Mathf.FloorToInt(time - minutes * 60f);
-       
-        if (time <= minGameTime)
+        currentTime = maxGameTime - timer;       
+           
+        if (currentTime <= minGameTime)
         {
             stopTimer = true;
             GameOver();
@@ -36,7 +35,7 @@ public class TimerScript : MonoBehaviour
 
         if (stopTimer == false)
         {
-            timerSlider.value = time;
+            timerSlider.value = currentTime;
         }
     }
 

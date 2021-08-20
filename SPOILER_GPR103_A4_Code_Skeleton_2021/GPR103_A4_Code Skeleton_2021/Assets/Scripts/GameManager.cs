@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
         UpdateLives(0);
         currentLivesUI.text = "5";
 
+        if (PlayerPrefs.HasKey("CurrentLives"))
+        {
+            currentLives = PlayerPrefs.GetInt("currentLives", currentLives);
+            currentLivesUI.text = currentLives.ToString();
+        }
         
 
 
@@ -71,6 +76,7 @@ public class GameManager : MonoBehaviour
     {
         currentLives += livesRemaining;
         currentLivesUI.text = currentLives.ToString();
+        PlayerPrefs.SetInt("CurrentLives", currentLives);
     }
 
     void UpdateHighScore()

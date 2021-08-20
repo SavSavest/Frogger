@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     public AudioClip drownSound;
     private GameManager myGameManager; //A reference to the GameManager in the scene.
     public TimerScript myTimer;
+
     void Start()
     {
         myGameManager = GameObject.FindObjectOfType<GameManager>();
@@ -92,23 +93,20 @@ public class Player : MonoBehaviour
                 myAudioSource.Play();
                 
             }
-
+            
             else
             {
                 animator.SetBool("isHopping", false);
-
-                
-            }           
-
-            
+               
+            }                      
         }
         //When player runs out of lives, send them to game over screen
         if (myGameManager.currentLives == 0)
         {
             Invoke("GameOver", 2f);
         }
-               
-    }
+
+          }
     
     void LateUpdate()
     {
@@ -125,28 +123,22 @@ public class Player : MonoBehaviour
     //Player collisions
     void OnTriggerEnter2D(Collider2D collision)
     {
+        
         if (playerIsAlive == true)
         {
             if (collision.transform.GetComponent<Vehicle>() != null || collision.transform.gameObject.tag == "Croc")
 
             {
                 KillPlayer();
-                //myGameManager.UpdateLives(-1);
+                
             }
-
-            if (collision.transform.GetComponent<Platform>() != null)
+            
+            else if (collision.transform.GetComponent<Platform>() != null)
             {
                 transform.SetParent(collision.transform);
                 isOnPlatform = true;
-                
+               
             }
-            else if (collision.transform.gameObject.tag == "Water")
-            {
-                isInWater = true;
-                
-            }
-
-
             else if (collision.transform.tag == "Bonus")
             {
                 myGameManager.UpdateScore(10);
@@ -162,6 +154,13 @@ public class Player : MonoBehaviour
                 Invoke("Finished", 1f);
 
             }
+            else if (collision.transform.gameObject.tag == "Water")
+            {
+                 isInWater = true;
+
+            }
+
+
         }
     }
 
@@ -171,8 +170,8 @@ public class Player : MonoBehaviour
         {
             if (collision.transform.GetComponent<Platform>() != null)
             {
-                transform.SetParent(null);
                 isOnPlatform = false;
+                transform.SetParent(null);
             }
             else if(collision.transform.tag == "Water")
             {

@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text currentScoreUI;
     public TMP_Text currentLivesUI;
     public TMP_Text highScoreUI;
-    public int maxLives = 5;
-    public int currentLives = 5;
+    public int maxLives = 10;
+    public int currentLives = 10;
     public int minLives = 0;
 
     [Header("Playable Area")]
@@ -32,13 +32,18 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        //To clear highscore before building
+        //PlayerPrefs.DeleteKey("HighScore");
+        //highScore = 0;
+
         if (PlayerPrefs.HasKey("HighScore"))
         {
             highScore = PlayerPrefs.GetInt("HighScore", highScore);
             highScoreUI.text = highScore.ToString();
         }
 
-       
+
+
     }
     // Start is called before the first frame update
     void Start()
@@ -47,16 +52,7 @@ public class GameManager : MonoBehaviour
         currentScoreUI.text = "0";
 
         UpdateLives(0);
-        currentLivesUI.text = "5";
-
-        if (PlayerPrefs.HasKey("CurrentLives"))
-        {
-            currentLives = PlayerPrefs.GetInt("currentLives", currentLives);
-            currentLivesUI.text = currentLives.ToString();
-        }
-        
-
-
+        currentLivesUI.text = "10";     
     }
 
     // Update is called once per frame
@@ -75,8 +71,7 @@ public class GameManager : MonoBehaviour
     public void UpdateLives(int livesRemaining)
     {
         currentLives += livesRemaining;
-        currentLivesUI.text = currentLives.ToString();
-        PlayerPrefs.SetInt("CurrentLives", currentLives);
+        currentLivesUI.text = currentLives.ToString();      
     }
 
     void UpdateHighScore()
@@ -91,13 +86,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    //So I can clear the highscore
-    //public void ClearHighScore()
-    //{
-    //    PlayerPrefs.DeleteKey("HighScore");
-    //    highScore = 0;
-    //    highScoreUI.text = highScore.ToString();
-    //}
 }
 
 //Reference for highscore storage

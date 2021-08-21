@@ -12809,10 +12809,10 @@ MonoBehaviour:
   currentScoreUI: {fileID: 1709061893}
   currentLivesUI: {fileID: 1618086277}
   highScoreUI: {fileID: 1432239931}
-  maxLives: 5
-  currentLives: 5
+  maxLives: 10
+  currentLives: 10
   minLives: 0
-  levelConstraintTop: 7.5
+  levelConstraintTop: 8
   levelConstraintBottom: -9
   levelConstraintLeft: -11
   levelConstraintRight: 10
